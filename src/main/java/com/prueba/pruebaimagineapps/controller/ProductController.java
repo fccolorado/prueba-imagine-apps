@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/productos")
 public class ProductController {
 
-    @GetMapping
+    @GetMapping ("")
     public String show() {
         return "productos/show";
+    }
+
+    @GetMapping ("/create")
+    public String create(){
+        return "productos/create";
     }
 }
