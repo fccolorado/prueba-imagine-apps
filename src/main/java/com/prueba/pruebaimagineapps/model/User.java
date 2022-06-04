@@ -1,8 +1,16 @@
 package com.prueba.pruebaimagineapps.model;
 
-public class Usuario {
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table (name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
     private String username;
     private String email;
@@ -11,10 +19,16 @@ public class Usuario {
     private String userType;
     private String password;
 
-    public Usuario() {
+    @OneToMany (mappedBy = "user")
+    private List <Product> products;
+
+    @OneToMany (mappedBy = "user")
+    private List <Order> orders;
+
+    public User() {
     }
 
-    public Usuario(Integer id, String name, String username, String email, String address, String phone, String userType, String password) {
+    public User(Integer id, String name, String username, String email, String address, String phone, String userType, String password) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -87,6 +101,22 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
